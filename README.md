@@ -3,6 +3,8 @@
 Salesforce Apexで日本の祝日を取得するためのクラス。
 Dateクラスのメソッドも、基本的に使えます。
 
+
+## サンプルコード
 ```
 JapanDate jd1 = JapanDate.newInstance(2011, 10, 10);
 System.debug(jd1.isHoliday()); // true
