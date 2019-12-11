@@ -6,8 +6,9 @@ public class JapanDate  {
     // Non-virtual and non-abstract type cannot be extended: Date
     private Date dt;
 
-    // Dateクラスは、staticメソッド経由でしかインスタンス化できないので、private
-    private JapanDate(Date dt) {
+    // Dateクラスは、staticメソッド経由でしかインスタンス化できないが、
+    // JapanDateはDateクラスを引数にインスタンス化を許容
+    public JapanDate(Date dt) {
         this.dt = dt;
     }
 
