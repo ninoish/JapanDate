@@ -79,7 +79,7 @@ public class JapanDate  {
 
     /* CONSTANTS */
     private static final JapanDate TRANSFER_HOLIDAY_ISSUED = JapanDate.newInstance(1973, 4, 12);
-    private static final JapanDate SUNDAY = JapanDate.newInstance(1899, 12, 31);
+    private static final JapanDate SUNDAY = JapanDate.newInstance(1, 1, 2);
     private static final JapanDate NATIONAL_HOLIDAY_ISSUED = JapanDate.newInstance(2003,1,1);
     private static final Integer TRANSFER_HOLIDAY_LAW_REVISED_YEAR = 2006;
 
