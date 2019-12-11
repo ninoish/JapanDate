@@ -1,8 +1,5 @@
 # JapanDate
 
-以下のQiitaのコードをApex向けに移植。
-https://qiita.com/chiyoyo/items/539dc2840a1b70a8e2c3
-
 Salesforce Apexで日本の祝日を取得するためのクラス。
 Dateクラスのメソッドも、基本的に使えます。
 
