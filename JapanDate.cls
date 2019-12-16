@@ -78,23 +78,23 @@ public class JapanDate  {
     };
 
     /* CONSTANTS */
-    private static final JapanDate TRANSFER_HOLIDAY_ISSUED = JapanDate.newInstance(1973, 4, 12);
+    private static final JapanDate SUBSTITUTE_HOLIDAY_ISSUED = JapanDate.newInstance(1973, 4, 12);
     private static final JapanDate SUNDAY = JapanDate.newInstance(1, 1, 2);
     private static final JapanDate NATIONAL_HOLIDAY_ISSUED = JapanDate.newInstance(2003,1,1);
-    private static final Integer TRANSFER_HOLIDAY_LAW_REVISED_YEAR = 2006;
+    private static final Integer SUBSTITUTE_HOLIDAY_LAW_REVISED_YEAR = 2006;
 
     // 平日、振替休日、祝日の名前。平日の場合はnullを返す。
     public String holiday() {
         // 祝日
-        String holiday = this.checkHoliday();
+        String holiday = this.getUsualHolidayName();
         if (holiday != null) return holiday;
 
         // 振替休日
-        holiday = this.checkTransferHoliday();
+        holiday = this.getSubstituteHolidayName();
         if (holiday != null) return holiday;
 
         // 国民の休日
-        return this.checkNationalHoliday();
+        return this.getNationalHolidayName();
     }
 
     /**
@@ -102,22 +102,22 @@ public class JapanDate  {
     */
     public Boolean isHoliday() {
         // 祝日
-        String holiday = this.checkHoliday();
+        String holiday = this.getUsualHolidayName();
         if (holiday != null) return true;
 
         // 振替休日
-        holiday = this.checkTransferHoliday();
+        holiday = this.getSubstituteHolidayName();
         if (holiday != null) return true;
 
         // 国民の休日チェック
-        return this.checkNationalHoliday() != null;
+        return this.getNationalHolidayName() != null;
     }
 
     /**
     * 設定された休日のみチェック
     * 国民の休日と振替休日はチェックしない
     */
-    public String checkHoliday() {
+    public String getUsualHolidayName() {
         String holiday = null;
         // 全ての祝日を判定
         for(Holiday h : HOLIDAYS) {
@@ -146,21 +146,21 @@ public class JapanDate  {
     /**
     * 振替休日チェック
     */
-    public String checkTransferHoliday()
+    public String getSubstituteHolidayName()
     {
         // 施行日チェック
-        if (this.getDate() < TRANSFER_HOLIDAY_ISSUED.getDate()) return null;
+        if (this.getDate() < SUBSTITUTE_HOLIDAY_ISSUED.getDate()) return null;
 
         // 当日が祝日の場合はfalse
-        if (this.checkHoliday() != null) return null;
+        if (this.getUsualHolidayName() != null) return null;
 
         //改正法なら最大7日間遡る
-        Integer num = (this.year() <= TRANSFER_HOLIDAY_LAW_REVISED_YEAR) ? 1 : 7;
+        Integer num = (this.year() <= SUBSTITUTE_HOLIDAY_LAW_REVISED_YEAR) ? 1 : 7;
 
         JapanDate comp = this.addDays(-1);
         String result = null;
         for (Integer i = 0 ; i < num ; i++) {
-            String holidayName = comp.checkHoliday();
+            String holidayName = comp.getUsualHolidayName();
             if (holidayName != null) {
                 // 祝日かつ日曜ならば振替休日
                 if (comp.dayOfWeek() == 0) {
@@ -179,15 +179,15 @@ public class JapanDate  {
     * 国民の休日チェック
     * 1日前と1日後が祝日の場合、間の平日も休日になる。
     */
-    public String checkNationalHoliday()
+    public String getNationalHolidayName()
     {
         // 施行日チェック
         if (this.getDate() < NATIONAL_HOLIDAY_ISSUED.getDate()) return null;
 
         JapanDate before = this.addDays(-1);
-        if (before.checkHoliday() == null) return null;
+        if (before.getUsualHolidayName() == null) return null;
         JapanDate after = this.addDays(1);
-        if (after.checkHoliday() == null) return null;
+        if (after.getUsualHolidayName() == null) return null;
         return '国民の休日';
     }
 
