@@ -172,7 +172,7 @@ public class JapanDate  {
                 break;
             }
         }
-        return result == null ? null : result + '(振替休日)';
+        return result == null ? null : '振替休日(' + result + ')';
     }
 
     /**
