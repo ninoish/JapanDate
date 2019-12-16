@@ -1,7 +1,7 @@
 # JapanDate
 
 Salesforce Apexで日本の祝日を取得するためのクラス。
-Dateクラスのメソッドも、基本的に使えます。
+[Dateクラス](https://developer.salesforce.com/docs/atlas.ja-jp.222.0.apexcode.meta/apexcode/apex_methods_system_datetime.htm)のメソッドも、基本的に使えます。
 
 
 ## サンプルコード
@@ -32,3 +32,6 @@ JapanDate jd7 = JapanDate.newInstance(2019, 3, 21);
 System.debug(jd7.holiday()); // 春分の日
 
 ```
+
+## 免責
+本コードは Lightning Platform の技術検証をかねて個人として作成したものであり、動作の正確性、セキュリティ上の安全性などについて保証するものではありません。Lightning Platform の実装のサンプルコードとして個人として公開するものです。
