@@ -7,10 +7,10 @@ Salesforce Apexで日本の祝日を取得するためのクラス。
 
 
 ## 独自メソッド
-public Boolean isHoliday() : 祝日・国民の休日・振替休日の場合、true。
-public String holiday() : 祝日・国民の休日・振替休日の名前を返す。それ以外はnull。
-public Integer dayOfWeek() : 0:日曜, 6:土曜
-public Date getDate() : Date型を返す
+- public Boolean isHoliday() : 祝日・国民の休日・振替休日の場合、true。
+- public String holiday() : 祝日・国民の休日・振替休日の名前を返す。それ以外はnull。
+- public Integer dayOfWeek() : 0:日曜, 6:土曜
+- public Date getDate() : Date型を返す
 
 ## サンプルコード
 ```
